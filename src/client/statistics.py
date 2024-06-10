@@ -10,7 +10,7 @@ def update_statistics(complete: QLabel, types: QListWidget):
 def complete_sum(data: list):
     complete: int = 0
     for item in data:
-        if item["taskstatus_id"] == 1:
+        if item["taskstatus_id"] == 3:
             complete += 1
     return complete
 

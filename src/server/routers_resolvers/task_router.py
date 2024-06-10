@@ -10,7 +10,7 @@ class TaskRouter(Router):
         self.router.add_api_route('/get_by_personal/', self.get_by_personal, methods=["get"])
 
     def get_all_data(self):
-        res_list = db.execute(query=f'select Task.date_start, ClientData.*, '
+        res_list = db.execute(query=f'select Task.id, Task.date_start, ClientData.*, '
                                     f'Personal.*, TaskStatus.*, TaskType.*  from Task '
                                     f'join ClientData ON ClientData.id = Task.clientdata_id '
                                     f'join Personal ON Personal.id = Task.personal_id '
@@ -20,7 +20,7 @@ class TaskRouter(Router):
         return self.get_models(res_list)
 
     def get_by_personal(self, id):
-        res_list = db.execute(query=f'select Task.date_start, ClientData.*, '
+        res_list = db.execute(query=f'select Task.id, Task.date_start, ClientData.*, '
                                     f'Personal.*, TaskStatus.*, TaskType.*  from Task '
                                     f'join ClientData ON ClientData.id = Task.clientdata_id '
                                     f'join Personal ON Personal.id = Task.personal_id '
@@ -35,10 +35,11 @@ class TaskRouter(Router):
         if res_list:
             for res in res_list:
                 models.append({
-                    "date_start": res[0],
-                    "clientdata": (res[1], res[2], res[3], res[4], res[5]),
-                    "personal": (res[6], res[7], res[8], res[9]),
-                    "taskstatus": (res[10], res[11]),
-                    "tasktype": (res[12], res[13])
+                    "id": res[0],
+                    "date_start": res[1],
+                    "clientdata": (res[2], res[3], res[4], res[5], res[6]),
+                    "personal": (res[7], res[8], res[9], res[10]),
+                    "taskstatus": (res[11], res[12]),
+                    "tasktype": (res[13], res[14])
                 })
         return models

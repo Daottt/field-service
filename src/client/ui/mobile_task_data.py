@@ -15,15 +15,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QSizePolicy,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QPushButton,
+    QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(190, 105)
-        Form.setStyleSheet(u"background-color: rgb(182, 182, 182);\n"
+        Form.resize(179, 136)
+        Form.setStyleSheet(u"background-color: rgb(142, 142, 142);\n"
 "font: 16pt \"Arial\";")
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -31,8 +31,14 @@ class Ui_Form(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.TaskTime = QLabel(Form)
         self.TaskTime.setObjectName(u"TaskTime")
+        self.TaskTime.setStyleSheet(u"font: 12pt \"Arial\";")
 
         self.horizontalLayout.addWidget(self.TaskTime)
+
+        self.Status = QLabel(Form)
+        self.Status.setObjectName(u"Status")
+
+        self.horizontalLayout.addWidget(self.Status)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -51,11 +57,17 @@ class Ui_Form(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.Address = QLabel(Form)
         self.Address.setObjectName(u"Address")
+        self.Address.setStyleSheet(u"font: 12pt \"Arial\";")
 
         self.horizontalLayout_3.addWidget(self.Address)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
+
+        self.pushButton = QPushButton(Form)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout.addWidget(self.pushButton)
 
 
         self.retranslateUi(Form)
@@ -66,7 +78,9 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.TaskTime.setText(QCoreApplication.translate("Form", u"10:10 - 12:12", None))
+        self.Status.setText(QCoreApplication.translate("Form", u"Status", None))
         self.TaskType.setText(QCoreApplication.translate("Form", u"TaskType", None))
         self.Address.setText(QCoreApplication.translate("Form", u"Address", None))
+        self.pushButton.setText(QCoreApplication.translate("Form", u"\u041e\u0442\u043a\u0440\u044b\u0442\u044c", None))
     # retranslateUi
 

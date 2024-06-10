@@ -7,3 +7,5 @@ insert into Personal (name, surname, post_id)
 insert into Users (login, password, personal_id)
 	values ("1", "1", "1");
 
+insert into TaskStatus (name)
+    values("Ожидает", "В процессе", "Выполнена")

@@ -15,28 +15,24 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QMainWindow,
+    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
+    QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(346, 486)
+        MainWindow.resize(356, 486)
         MainWindow.setStyleSheet(u"background-color: rgb(182, 182, 182);\n"
 "font: 16pt \"Arial\";")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayout = QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.horizontalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_2, 0, 2, 1, 1)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
@@ -68,7 +64,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 234, 405))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 252, 405))
         self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
@@ -86,20 +82,31 @@ class Ui_MainWindow(object):
         self.task_data.setObjectName(u"task_data")
         self.verticalLayout_5 = QVBoxLayout(self.task_data)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.widget = QWidget(self.task_data)
+        self.widget.setObjectName(u"widget")
+        self.widget.setStyleSheet(u"background-color: rgb(142, 142, 142);")
+        self.verticalLayout_8 = QVBoxLayout(self.widget)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.label = QLabel(self.task_data)
+        self.label = QLabel(self.widget)
         self.label.setObjectName(u"label")
 
         self.verticalLayout_2.addWidget(self.label)
 
-        self.AddressText = QLabel(self.task_data)
+        self.AddressText = QLabel(self.widget)
         self.AddressText.setObjectName(u"AddressText")
         self.AddressText.setStyleSheet(u"font: 12pt \"Arial\";")
 
         self.verticalLayout_2.addWidget(self.AddressText)
 
-        self.ShowOnMap = QPushButton(self.task_data)
+        self.time_text = QLabel(self.widget)
+        self.time_text.setObjectName(u"time_text")
+        self.time_text.setStyleSheet(u"font: 12pt \"Arial\";")
+
+        self.verticalLayout_2.addWidget(self.time_text)
+
+        self.ShowOnMap = QPushButton(self.widget)
         self.ShowOnMap.setObjectName(u"ShowOnMap")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -111,22 +118,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.ShowOnMap)
 
 
-        self.verticalLayout_5.addLayout(self.verticalLayout_2)
+        self.verticalLayout_8.addLayout(self.verticalLayout_2)
 
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.label_2 = QLabel(self.task_data)
+        self.label_2 = QLabel(self.widget)
         self.label_2.setObjectName(u"label_2")
 
         self.verticalLayout_4.addWidget(self.label_2)
 
-        self.ClientText = QLabel(self.task_data)
+        self.ClientText = QLabel(self.widget)
         self.ClientText.setObjectName(u"ClientText")
         self.ClientText.setStyleSheet(u"font: 12pt \"Arial\";")
 
         self.verticalLayout_4.addWidget(self.ClientText)
 
-        self.CallClient = QPushButton(self.task_data)
+        self.CallClient = QPushButton(self.widget)
         self.CallClient.setObjectName(u"CallClient")
         sizePolicy.setHeightForWidth(self.CallClient.sizePolicy().hasHeightForWidth())
         self.CallClient.setSizePolicy(sizePolicy)
@@ -135,11 +142,27 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.CallClient)
 
 
-        self.verticalLayout_5.addLayout(self.verticalLayout_4)
+        self.verticalLayout_8.addLayout(self.verticalLayout_4)
+
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.Type = QLabel(self.widget)
+        self.Type.setObjectName(u"Type")
+
+        self.verticalLayout_9.addWidget(self.Type)
+
+        self.Status = QLabel(self.widget)
+        self.Status.setObjectName(u"Status")
+        self.Status.setStyleSheet(u"")
+
+        self.verticalLayout_9.addWidget(self.Status)
+
+
+        self.verticalLayout_8.addLayout(self.verticalLayout_9)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.Back = QPushButton(self.task_data)
+        self.Back = QPushButton(self.widget)
         self.Back.setObjectName(u"Back")
         sizePolicy.setHeightForWidth(self.Back.sizePolicy().hasHeightForWidth())
         self.Back.setSizePolicy(sizePolicy)
@@ -147,39 +170,33 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.Back)
 
-        self.Complete = QPushButton(self.task_data)
-        self.Complete.setObjectName(u"Complete")
-        sizePolicy.setHeightForWidth(self.Complete.sizePolicy().hasHeightForWidth())
-        self.Complete.setSizePolicy(sizePolicy)
-        self.Complete.setStyleSheet(u"font: 14pt \"Arial\";")
+        self.Start_Complete = QPushButton(self.widget)
+        self.Start_Complete.setObjectName(u"Start_Complete")
+        sizePolicy.setHeightForWidth(self.Start_Complete.sizePolicy().hasHeightForWidth())
+        self.Start_Complete.setSizePolicy(sizePolicy)
+        self.Start_Complete.setStyleSheet(u"font: 14pt \"Arial\";")
 
-        self.horizontalLayout.addWidget(self.Complete)
-
-
-        self.verticalLayout_5.addLayout(self.horizontalLayout)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.Start = QPushButton(self.task_data)
-        self.Start.setObjectName(u"Start")
-        sizePolicy.setHeightForWidth(self.Start.sizePolicy().hasHeightForWidth())
-        self.Start.setSizePolicy(sizePolicy)
-        self.Start.setStyleSheet(u"font: 14pt \"Arial\";")
-
-        self.horizontalLayout_2.addWidget(self.Start)
+        self.horizontalLayout.addWidget(self.Start_Complete)
 
 
-        self.verticalLayout_5.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_8.addLayout(self.horizontalLayout)
+
+
+        self.verticalLayout_5.addWidget(self.widget)
 
         self.stackedWidget.addWidget(self.task_data)
 
-        self.gridLayout.addWidget(self.stackedWidget, 0, 1, 1, 1)
+        self.horizontalLayout_2.addWidget(self.stackedWidget)
+
+        self.horizontalSpacer_2 = QSpacerItem(20, 20, QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -191,12 +208,14 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0434\u0440\u0435\u0441:", None))
         self.AddressText.setText(QCoreApplication.translate("MainWindow", u"Address", None))
+        self.time_text.setText(QCoreApplication.translate("MainWindow", u"Time", None))
         self.ShowOnMap.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u043d\u0430 \u043a\u0430\u0440\u0442\u0435", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u0438\u0435\u043d\u0442:", None))
         self.ClientText.setText(QCoreApplication.translate("MainWindow", u"Client", None))
         self.CallClient.setText(QCoreApplication.translate("MainWindow", u"Number", None))
+        self.Type.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0438\u043f:", None))
+        self.Status.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441:", None))
         self.Back.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0430\u0434", None))
-        self.Complete.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043f\u043e\u043b\u043d\u0438\u0442\u044c", None))
-        self.Start.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0447\u0430\u0442\u044c", None))
+        self.Start_Complete.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0447\u0430\u0442\u044c", None))
     # retranslateUi
 

@@ -27,6 +27,8 @@ class SettingsManager:
                                   self.ui.settings_add_8, self.ui.settings_update_8, self.ui.settings_delete_8)
         self.status = TableManager("TaskStatus", self.window,  self.ui.settings_table_9,
                                   self.ui.settings_add_9, self.ui.settings_update_9, self.ui.settings_delete_9)
+        self.ui.settings_add_9.setVisible(False)
+        self.ui.settings_delete_9.setVisible(False)
 
         self.ui.widget_debug.setVisible(False)
         self.task = TableManager("Task", self.window,  self.ui.settings_table_11,

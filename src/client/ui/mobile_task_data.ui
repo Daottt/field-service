@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>190</width>
-    <height>105</height>
+    <width>179</width>
+    <height>136</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(182, 182, 182);
+   <string notr="true">background-color: rgb(142, 142, 142);
 font: 16pt &quot;Arial&quot;;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -22,8 +22,18 @@ font: 16pt &quot;Arial&quot;;</string>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="TaskTime">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Arial&quot;;</string>
+       </property>
        <property name="text">
         <string>10:10 - 12:12</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="Status">
+       <property name="text">
+        <string>Status</string>
        </property>
       </widget>
      </item>
@@ -44,12 +54,22 @@ font: 16pt &quot;Arial&quot;;</string>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="Address">
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;Arial&quot;;</string>
+       </property>
        <property name="text">
         <string>Address</string>
        </property>
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Открыть</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
