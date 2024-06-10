@@ -14,19 +14,24 @@
    <font>
     <family>Arial</family>
     <pointsize>16</pointsize>
+    <italic>false</italic>
+    <bold>false</bold>
    </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(182, 182, 182)</string>
+   <string notr="true">background-color: rgb(182, 182, 182);
+font: 16pt &quot;Arial&quot;;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="font">
     <font>
      <family>Arial</family>
      <pointsize>16</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -69,10 +74,31 @@
             <font>
              <family>Arial</family>
              <pointsize>16</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
             <string>Заявки</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="ShowStats">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Статистика</string>
            </property>
           </widget>
          </item>
@@ -91,6 +117,8 @@
             <font>
              <family>Arial</family>
              <pointsize>16</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
            </property>
            <property name="text">
@@ -123,6 +151,10 @@
       </property>
       <property name="font">
        <font>
+        <family>Arial</family>
+        <pointsize>16</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -131,6 +163,9 @@
        <number>1</number>
       </property>
       <widget class="QWidget" name="login">
+       <property name="styleSheet">
+        <string notr="true">font: 20pt &quot;Arial&quot;;</string>
+       </property>
        <widget class="QWidget" name="verticalLayoutWidget_2">
         <property name="geometry">
          <rect>
@@ -147,7 +182,12 @@
             <font>
              <family>Arial</family>
              <pointsize>24</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 24pt &quot;Arial&quot;;</string>
            </property>
            <property name="text">
             <string>Авторизация</string>
@@ -163,6 +203,8 @@
             <font>
              <family>Arial</family>
              <pointsize>20</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
            </property>
            <property name="placeholderText">
@@ -189,6 +231,8 @@
             <font>
              <family>Arial</family>
              <pointsize>20</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
            </property>
            <property name="placeholderText">
@@ -233,7 +277,12 @@
               <font>
                <family>Arial</family>
                <pointsize>16</pointsize>
+               <italic>false</italic>
+               <bold>false</bold>
               </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 16pt &quot;Arial&quot;;</string>
              </property>
              <property name="text">
               <string>Вход</string>
@@ -264,7 +313,12 @@
             <font>
              <family>Arial</family>
              <pointsize>16</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 16pt &quot;Arial&quot;;</string>
            </property>
            <property name="text">
             <string/>
@@ -527,6 +581,8 @@
            <font>
             <family>Arial</family>
             <pointsize>16</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
            </font>
           </property>
          </widget>
@@ -570,6 +626,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -589,6 +647,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -608,6 +668,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -639,6 +701,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -705,6 +769,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -724,6 +790,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -743,6 +811,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -774,6 +844,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -840,6 +912,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -859,6 +933,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -878,6 +954,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -909,6 +987,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -975,6 +1055,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -994,6 +1076,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1013,6 +1097,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1044,6 +1130,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -1110,6 +1198,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1129,6 +1219,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1148,6 +1240,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1179,6 +1273,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -1245,6 +1341,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1264,6 +1362,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1283,6 +1383,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1314,6 +1416,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -1369,6 +1473,8 @@
              <font>
               <family>Arial</family>
               <pointsize>16</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
              </font>
             </property>
             <property name="text">
@@ -1424,6 +1530,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1443,6 +1551,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1462,6 +1572,8 @@
                    <font>
                     <family>Arial</family>
                     <pointsize>16</pointsize>
+                    <italic>false</italic>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="text">
@@ -1493,6 +1605,8 @@
                  <font>
                   <family>Arial</family>
                   <pointsize>16</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="editTriggers">
@@ -1526,6 +1640,95 @@
            </widget>
           </widget>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Stats">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="2">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QLabel" name="SumText">
+               <property name="text">
+                <string>Количество выполненных заявок</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Policy::Minimum</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="TypeText">
+               <property name="text">
+                <string>Типы заявок</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QListWidget" name="TaskTypes"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="0">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Policy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

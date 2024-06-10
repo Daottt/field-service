@@ -16,10 +16,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDateTimeEdit,
-    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QListWidget, QListWidgetItem, QMainWindow, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,8 +29,11 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setFamilies([u"Arial"])
         font.setPointSize(16)
+        font.setBold(False)
+        font.setItalic(False)
         MainWindow.setFont(font)
-        MainWindow.setStyleSheet(u"background-color: rgb(182, 182, 182)")
+        MainWindow.setStyleSheet(u"background-color: rgb(182, 182, 182);\n"
+"font: 16pt \"Arial\";")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setFont(font)
@@ -55,6 +58,17 @@ class Ui_MainWindow(object):
 
         self.layouy.addWidget(self.ShowTables)
 
+        self.ShowStats = QPushButton(self.navButtons)
+        self.ShowStats.setObjectName(u"ShowStats")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ShowStats.sizePolicy().hasHeightForWidth())
+        self.ShowStats.setSizePolicy(sizePolicy)
+        self.ShowStats.setMinimumSize(QSize(250, 0))
+
+        self.layouy.addWidget(self.ShowStats)
+
         self.ShowSettings = QPushButton(self.navButtons)
         self.ShowSettings.setObjectName(u"ShowSettings")
         self.ShowSettings.setEnabled(True)
@@ -77,11 +91,16 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setEnabled(True)
         font1 = QFont()
+        font1.setFamilies([u"Arial"])
+        font1.setPointSize(16)
+        font1.setBold(False)
+        font1.setItalic(False)
         font1.setKerning(True)
         font1.setStyleStrategy(QFont.PreferDefault)
         self.stackedWidget.setFont(font1)
         self.login = QWidget()
         self.login.setObjectName(u"login")
+        self.login.setStyleSheet(u"font: 20pt \"Arial\";")
         self.verticalLayoutWidget_2 = QWidget(self.login)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
         self.verticalLayoutWidget_2.setGeometry(QRect(380, 170, 321, 231))
@@ -93,7 +112,10 @@ class Ui_MainWindow(object):
         font2 = QFont()
         font2.setFamilies([u"Arial"])
         font2.setPointSize(24)
+        font2.setBold(False)
+        font2.setItalic(False)
         self.label.setFont(font2)
+        self.label.setStyleSheet(u"font: 24pt \"Arial\";")
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.label)
@@ -103,6 +125,8 @@ class Ui_MainWindow(object):
         font3 = QFont()
         font3.setFamilies([u"Arial"])
         font3.setPointSize(20)
+        font3.setBold(False)
+        font3.setItalic(False)
         self.loginText.setFont(font3)
 
         self.verticalLayout_3.addWidget(self.loginText)
@@ -130,6 +154,7 @@ class Ui_MainWindow(object):
         self.LoginButton = QPushButton(self.verticalLayoutWidget_2)
         self.LoginButton.setObjectName(u"LoginButton")
         self.LoginButton.setFont(font)
+        self.LoginButton.setStyleSheet(u"font: 16pt \"Arial\";")
 
         self.horizontalLayout_2.addWidget(self.LoginButton)
 
@@ -143,6 +168,7 @@ class Ui_MainWindow(object):
         self.loginInfo = QLabel(self.verticalLayoutWidget_2)
         self.loginInfo.setObjectName(u"loginInfo")
         self.loginInfo.setFont(font)
+        self.loginInfo.setStyleSheet(u"font: 16pt \"Arial\";")
         self.loginInfo.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.loginInfo)
@@ -235,26 +261,21 @@ class Ui_MainWindow(object):
         self.Add_R = QPushButton(self.Requests)
         self.Add_R.setObjectName(u"Add_R")
         self.Add_R.setMinimumSize(QSize(200, 0))
-        font4 = QFont()
-        font4.setFamilies([u"Arial"])
-        font4.setPointSize(16)
-        font4.setBold(False)
-        font4.setItalic(False)
-        self.Add_R.setFont(font4)
+        self.Add_R.setFont(font)
 
         self.R_buttons.addWidget(self.Add_R)
 
         self.Update_R = QPushButton(self.Requests)
         self.Update_R.setObjectName(u"Update_R")
         self.Update_R.setMinimumSize(QSize(200, 0))
-        self.Update_R.setFont(font4)
+        self.Update_R.setFont(font)
 
         self.R_buttons.addWidget(self.Update_R)
 
         self.Delete_R = QPushButton(self.Requests)
         self.Delete_R.setObjectName(u"Delete_R")
         self.Delete_R.setMinimumSize(QSize(200, 0))
-        self.Delete_R.setFont(font4)
+        self.Delete_R.setFont(font)
 
         self.R_buttons.addWidget(self.Delete_R)
 
@@ -267,7 +288,7 @@ class Ui_MainWindow(object):
 
         self.RequestsTable = QTableWidget(self.Requests)
         self.RequestsTable.setObjectName(u"RequestsTable")
-        self.RequestsTable.setFont(font4)
+        self.RequestsTable.setFont(font)
         self.RequestsTable.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.RequestsTable.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.RequestsTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
@@ -715,6 +736,54 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.stacked_Settings)
 
         self.stackedWidget.addWidget(self.Settings)
+        self.Stats = QWidget()
+        self.Stats.setObjectName(u"Stats")
+        self.gridLayout = QGridLayout(self.Stats)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_2, 0, 2, 1, 1)
+
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.widget = QWidget(self.Stats)
+        self.widget.setObjectName(u"widget")
+        self.verticalLayout = QVBoxLayout(self.widget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.SumText = QLabel(self.widget)
+        self.SumText.setObjectName(u"SumText")
+
+        self.verticalLayout.addWidget(self.SumText)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout.addItem(self.verticalSpacer_4)
+
+        self.TypeText = QLabel(self.widget)
+        self.TypeText.setObjectName(u"TypeText")
+
+        self.verticalLayout.addWidget(self.TypeText)
+
+        self.TaskTypes = QListWidget(self.widget)
+        self.TaskTypes.setObjectName(u"TaskTypes")
+
+        self.verticalLayout.addWidget(self.TaskTypes)
+
+
+        self.verticalLayout_5.addWidget(self.widget)
+
+
+        self.gridLayout.addLayout(self.verticalLayout_5, 0, 1, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer, 0, 0, 1, 1)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+
+        self.gridLayout.addItem(self.verticalSpacer_5, 1, 1, 1, 1)
+
+        self.stackedWidget.addWidget(self.Stats)
 
         self.verticalLayout_2.addWidget(self.stackedWidget)
 
@@ -732,6 +801,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.ShowTables.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u044f\u0432\u043a\u0438", None))
+        self.ShowStats.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043a\u0430", None))
         self.ShowSettings.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044f", None))
         self.loginText.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
@@ -770,5 +840,7 @@ class Ui_MainWindow(object):
         self.settings_add_11.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.settings_update_11.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.settings_delete_11.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.SumText.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043d\u044b\u0445 \u0437\u0430\u044f\u0432\u043e\u043a", None))
+        self.TypeText.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0438\u043f\u044b \u0437\u0430\u044f\u0432\u043e\u043a", None))
     # retranslateUi
 

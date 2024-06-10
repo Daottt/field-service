@@ -54,3 +54,10 @@ def get_fields(table: str):
         url=f'{server_url}/{table}/fields',
     )
     return answer.json()
+
+def get_task_by_personal(personal_id: int):
+    answer = requests.get(
+        url=f'{server_url}/Task/get_by_personal/',
+        params={"id": personal_id},
+    )
+    return answer.json()
