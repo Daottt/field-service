@@ -5,10 +5,10 @@ from src.client.ui.ui_data import Ui_Dialog
 TableFields = {"Users": [[QLineEdit, "Имя"], [QLineEdit, "Пароль"], [QLineEdit, "personal_id"]],
                "Task": [[QDateTimeEdit, "date_start"], [QLineEdit, "clientdata_id"], [QLineEdit, "personal_id"],
                         [QLineEdit, "taskstatus_id"],[QLineEdit, "tasktype_id"]],
-               "ClientData": [[QLineEdit, "name"], [QLineEdit, "surname"], [QLineEdit, "address"],
-                              [QLineEdit, "phone_number"]],
+               "ClientData": [[QLineEdit, "ФИО"], [QLineEdit, "Адрес"],
+                              [QLineEdit, "Номер телефона"]],
                "Post": [[QLineEdit, "Название"], [QLineEdit, "Доступ"]],
-               "Personal": [[QLineEdit, "Имя"], [QLineEdit, "Фамилия"], [QLineEdit, "post_id"]],
+               "Personal": [[QLineEdit, "ФИО"],  [QLineEdit, "post_id"]],
                "TaskStatus": [[QLineEdit, "Название"]],
                "TaskType": [[QLineEdit, "Название"]]}
 

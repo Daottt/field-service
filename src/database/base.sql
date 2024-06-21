@@ -1,8 +1,7 @@
 
 create table ClientData(
 	id integer PRIMARY KEY autoincrement,
-    name varchar(50),
-    surname varchar(50),
+    fio varchar(50),
     address varchar(50),
     phone_number varchar(50)
 );
@@ -15,8 +14,7 @@ create table Post(
 
 create table Personal(
 	id integer PRIMARY KEY autoincrement,
-    name varchar(50),
-    surname varchar(50),
+    fio varchar(100),
     post_id integer,
     foreign key (post_id) references Post(id)
 );
@@ -50,4 +48,22 @@ create table Task(
     foreign key (personal_id) references Personal(id),
     foreign key (taskstatus_id) references TaskStatus(id),
     foreign key (tasktype_id) references TaskType(id)
+);
+
+create table Reviews(
+	id integer PRIMARY KEY autoincrement,
+    text varchar(50),
+    client_id integer,
+    master_id integer,
+    foreign key (client_id) references ClientData(id),
+    foreign key (master_id) references Personal(id)
+);
+
+create table Comments(
+	id integer PRIMARY KEY autoincrement,
+    text varchar(50),
+    master_id integer,
+    task_id integer,
+    foreign key (master_id) references Personal(id),
+    foreign key (task_id) references Task(id)
 );

@@ -22,7 +22,7 @@ class DatabaseManager:
         connection = sqlite3.connect(self.base_path)
         cur = connection.cursor()
 
-        with open(sql_file, 'r') as file:
+        with open(sql_file, 'r', encoding='utf-8') as file:
             scripts = file.read()
             try:
                 cur.executescript(scripts)

@@ -61,3 +61,10 @@ def get_task_by_personal(personal_id: int):
         params={"id": personal_id},
     )
     return answer.json()
+
+def get_task_by_client(client_id: int):
+    answer = requests.get(
+        url=f'{server_url}/Task/get_by_client/',
+        params={"id": client_id},
+    )
+    return answer.json()

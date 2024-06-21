@@ -83,8 +83,8 @@ class MainWindow(QMainWindow):
 
         self.ui.AddressText.setText(data["clientdata"][3])
         self.ui.time_text.setText(data["date_start"])
-        self.ui.ClientText.setText(f'{data["clientdata"][1]} {data["clientdata"][2]}')
-        self.ui.CallClient.setText(data["clientdata"][4])
+        self.ui.ClientText.setText(f'{data["clientdata"][1]} \n{data["clientdata"][2]}')
+        self.ui.CallClient.setText(data["clientdata"][3])
         self.ui.Status.setText(f'Статус: {data["taskstatus"][1]}')
         self.ui.Type.setText(f'Тип: {data["tasktype"][1]}')
         self.ui.stackedWidget.setCurrentIndex(1)

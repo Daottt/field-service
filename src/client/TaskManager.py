@@ -4,7 +4,7 @@ from src.client.ClientDataWindow import ClientDataWindow
 from src.client.resolver import *
 from src.database.models import Task
 
-TableFields = ["Время начала работ", "ФИО клиента", "Адрес клиента",
+TableFields = ["ID", "Время начала работ", "ФИО клиента", "Адрес клиента",
                "ФИО работника", "Статус задачи", "Тип задачи"]
 
 class TaskManager:
@@ -20,6 +20,8 @@ class TaskManager:
         self.Update.clicked.connect(self.change_task)
         self.Delete.clicked.connect(self.delete_task)
         self.ui.client_data.clicked.connect(self.open_client_data)
+        self.row_selection(False)
+        self.ui.RequestsTable.currentItemChanged.connect(lambda: self.row_selection(True))
 
         self.ui.create.clicked.connect(self.create_task)
         self.combo_box_data: list = list()
@@ -34,7 +36,7 @@ class TaskManager:
 
     def set_combo_box_data(self):
         self.combo_box_data.clear()
-        self.combo_box_data.append(self.set_combobox(self.ui.personal_box, "Personal"))
+        self.combo_box_data.append(self.set_combobox(self.ui.personal_box, "Personal", "fio"))
         self.combo_box_data.append(self.set_combobox(self.ui.status_box, "TaskStatus"))
         self.combo_box_data.append(self.set_combobox(self.ui.type_box, "TaskType"))
         self.ui.create.setEnabled(False)
@@ -70,7 +72,7 @@ class TaskManager:
         box_id = []
         text = list()
         for d in data:
-            text.append(d[data_field])
+            text.append(d[data_field]) #ПОЛЕ ИЗ КОТОРОГО БЕРЁТСЯ ТЕКСТ ДЛЯ BOX'а
             box_id.append(d["id"])
         box.addItems(text)
         return box_id
@@ -86,13 +88,14 @@ class TaskManager:
             self.UpdateTableData()
 
     def delete_task(self):
+        index = self.get_current_id()
         ret = QMessageBox.warning(self.window, "Подтверждение",
-                                  f"Вы хотите удалить запись с id:{self.current_index}",
+                                  f"Вы хотите удалить запись с id:{index}",
                                   QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.Cancel)
         if ret != QMessageBox.StandardButton.Yes:
             return
-
-        delete("Task", self.current_index)
+        delete("Task", index)
+        self.UpdateTableData()
 
     def get_model(self) -> dict:
         box_data = list()
@@ -115,11 +118,15 @@ class TaskManager:
         self.client_data.clear()
         table: QTableWidget = self.client_window.ui.Table
         data = []
-        for i in range(5):
+        for i in range(4):
             data.append(table.item(table.currentRow(), i).text())
         self.client_data = data
         self.ui.label_2.setText(f"Клиент: ID:{data[0]}")
         self.client_window.close()
+
+    def row_selection(self, enabled):
+        self.ui.Update_R.setEnabled(enabled)
+        self.ui.Delete_R.setEnabled(enabled)
 
     def UpdateTableData(self):
         self.raw_data.clear()
@@ -134,10 +141,16 @@ class TaskManager:
 
         row_index = 0
         for values in data:
-            self.Table.setItem(row_index, 0, QTableWidgetItem(str(values["date_start"])))
-            self.Table.setItem(row_index, 1, QTableWidgetItem(str(values["clientdata"][1] + " " + values["clientdata"][2])))
-            self.Table.setItem(row_index, 2, QTableWidgetItem(str(values["clientdata"][3])))
-            self.Table.setItem(row_index, 3, QTableWidgetItem(str(values["personal"][1] + " " + values["personal"][2])))
-            self.Table.setItem(row_index, 4, QTableWidgetItem(str(values["taskstatus"][1])))
-            self.Table.setItem(row_index, 5, QTableWidgetItem(str(values["tasktype"][1])))
+            self.Table.setItem(row_index, 0, QTableWidgetItem(str(values["id"])))
+            self.Table.setItem(row_index, 1, QTableWidgetItem(str(values["date_start"])))
+            self.Table.setItem(row_index, 2, QTableWidgetItem(str(values["clientdata"][1])))
+            self.Table.setItem(row_index, 3, QTableWidgetItem(str(values["clientdata"][3])))
+            self.Table.setItem(row_index, 4, QTableWidgetItem(str(values["personal"][1])))
+            self.Table.setItem(row_index, 5, QTableWidgetItem(str(values["taskstatus"][1])))
+            self.Table.setItem(row_index, 6, QTableWidgetItem(str(values["tasktype"][1])))
             row_index += 1
+        self.Table.resizeColumnsToContents()
+
+    def get_current_id(self) -> int:
+        index = self.Table.selectedIndexes()[0]
+        return self.Table.model().data(index)

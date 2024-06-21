@@ -17,15 +17,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDateTimeEdit,
     QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QLayout, QLineEdit, QListWidget, QListWidgetItem,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1086, 675)
+        MainWindow.resize(1086, 676)
         font = QFont()
         font.setFamilies([u"Arial"])
         font.setPointSize(16)
@@ -37,55 +38,78 @@ class Ui_MainWindow(object):
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setFont(font)
-        self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.horizontalLayout_6 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.navButtons = QWidget(self.centralwidget)
         self.navButtons.setObjectName(u"navButtons")
-        self.navButtons.setEnabled(True)
-        self.verticalLayout_4 = QVBoxLayout(self.navButtons)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.layouy = QHBoxLayout()
-        self.layouy.setObjectName(u"layouy")
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.layouy.addItem(self.horizontalSpacer_3)
-
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.navButtons.sizePolicy().hasHeightForWidth())
+        self.navButtons.setSizePolicy(sizePolicy)
+        self.navButtons.setMinimumSize(QSize(140, 0))
+        self.navButtons.setStyleSheet(u"QWidget#navButtons{\n"
+"	border: 1px solid rgb(130,135,144);\n"
+"	alignment: center;\n"
+"};")
+        self.verticalLayout_nav = QVBoxLayout(self.navButtons)
+        self.verticalLayout_nav.setObjectName(u"verticalLayout_nav")
+        self.verticalLayout_nav.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        self.verticalLayout_nav.setContentsMargins(10, 10, -1, -1)
         self.ShowTables = QPushButton(self.navButtons)
         self.ShowTables.setObjectName(u"ShowTables")
         self.ShowTables.setEnabled(False)
-        self.ShowTables.setMinimumSize(QSize(250, 0))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.ShowTables.sizePolicy().hasHeightForWidth())
+        self.ShowTables.setSizePolicy(sizePolicy1)
+        self.ShowTables.setMinimumSize(QSize(120, 0))
         self.ShowTables.setFont(font)
+        self.ShowTables.setFlat(False)
 
-        self.layouy.addWidget(self.ShowTables)
+        self.verticalLayout_nav.addWidget(self.ShowTables)
+
+        self.ShowClietns = QPushButton(self.navButtons)
+        self.ShowClietns.setObjectName(u"ShowClietns")
+        sizePolicy1.setHeightForWidth(self.ShowClietns.sizePolicy().hasHeightForWidth())
+        self.ShowClietns.setSizePolicy(sizePolicy1)
+        self.ShowClietns.setMinimumSize(QSize(120, 0))
+
+        self.verticalLayout_nav.addWidget(self.ShowClietns)
+
+        self.ShowPersonal = QPushButton(self.navButtons)
+        self.ShowPersonal.setObjectName(u"ShowPersonal")
+        sizePolicy1.setHeightForWidth(self.ShowPersonal.sizePolicy().hasHeightForWidth())
+        self.ShowPersonal.setSizePolicy(sizePolicy1)
+        self.ShowPersonal.setMinimumSize(QSize(120, 0))
+
+        self.verticalLayout_nav.addWidget(self.ShowPersonal)
 
         self.ShowStats = QPushButton(self.navButtons)
         self.ShowStats.setObjectName(u"ShowStats")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.ShowStats.sizePolicy().hasHeightForWidth())
-        self.ShowStats.setSizePolicy(sizePolicy)
-        self.ShowStats.setMinimumSize(QSize(250, 0))
+        sizePolicy1.setHeightForWidth(self.ShowStats.sizePolicy().hasHeightForWidth())
+        self.ShowStats.setSizePolicy(sizePolicy1)
+        self.ShowStats.setMinimumSize(QSize(120, 0))
 
-        self.layouy.addWidget(self.ShowStats)
+        self.verticalLayout_nav.addWidget(self.ShowStats)
 
         self.ShowSettings = QPushButton(self.navButtons)
         self.ShowSettings.setObjectName(u"ShowSettings")
         self.ShowSettings.setEnabled(True)
-        self.ShowSettings.setMinimumSize(QSize(250, 0))
+        sizePolicy1.setHeightForWidth(self.ShowSettings.sizePolicy().hasHeightForWidth())
+        self.ShowSettings.setSizePolicy(sizePolicy1)
+        self.ShowSettings.setMinimumSize(QSize(120, 0))
         self.ShowSettings.setFont(font)
 
-        self.layouy.addWidget(self.ShowSettings)
+        self.verticalLayout_nav.addWidget(self.ShowSettings)
 
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.layouy.addItem(self.horizontalSpacer_4)
-
-
-        self.verticalLayout_4.addLayout(self.layouy)
+        self.verticalLayout_nav.addItem(self.verticalSpacer_6)
 
 
-        self.verticalLayout_2.addWidget(self.navButtons)
+        self.horizontalLayout_6.addWidget(self.navButtons)
 
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
@@ -202,6 +226,11 @@ class Ui_MainWindow(object):
 
         self.personal_box = QComboBox(self.task_c_layout)
         self.personal_box.setObjectName(u"personal_box")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.personal_box.sizePolicy().hasHeightForWidth())
+        self.personal_box.setSizePolicy(sizePolicy2)
 
         self.Layout_t.addWidget(self.personal_box)
 
@@ -222,6 +251,8 @@ class Ui_MainWindow(object):
 
         self.type_box = QComboBox(self.task_c_layout)
         self.type_box.setObjectName(u"type_box")
+        sizePolicy2.setHeightForWidth(self.type_box.sizePolicy().hasHeightForWidth())
+        self.type_box.setSizePolicy(sizePolicy2)
 
         self.Layout_t.addWidget(self.type_box)
 
@@ -380,59 +411,6 @@ class Ui_MainWindow(object):
         self.page_Personal.setObjectName(u"page_Personal")
         self.horizontalLayout_16 = QHBoxLayout(self.page_Personal)
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.table_settings_10 = QVBoxLayout()
-        self.table_settings_10.setObjectName(u"table_settings_10")
-        self.horizontalLayout_14 = QHBoxLayout()
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.horizontalSpacer_25 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_14.addItem(self.horizontalSpacer_25)
-
-        self.settings_add_10 = QPushButton(self.page_Personal)
-        self.settings_add_10.setObjectName(u"settings_add_10")
-        self.settings_add_10.setMinimumSize(QSize(200, 0))
-        self.settings_add_10.setFont(font)
-
-        self.horizontalLayout_14.addWidget(self.settings_add_10)
-
-        self.settings_update_10 = QPushButton(self.page_Personal)
-        self.settings_update_10.setObjectName(u"settings_update_10")
-        self.settings_update_10.setMinimumSize(QSize(200, 0))
-        self.settings_update_10.setFont(font)
-
-        self.horizontalLayout_14.addWidget(self.settings_update_10)
-
-        self.settings_delete_10 = QPushButton(self.page_Personal)
-        self.settings_delete_10.setObjectName(u"settings_delete_10")
-        self.settings_delete_10.setMinimumSize(QSize(200, 0))
-        self.settings_delete_10.setFont(font)
-
-        self.horizontalLayout_14.addWidget(self.settings_delete_10)
-
-        self.horizontalSpacer_26 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_14.addItem(self.horizontalSpacer_26)
-
-
-        self.table_settings_10.addLayout(self.horizontalLayout_14)
-
-        self.settings_table_10 = QTableWidget(self.page_Personal)
-        self.settings_table_10.setObjectName(u"settings_table_10")
-        self.settings_table_10.setFont(font)
-        self.settings_table_10.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.settings_table_10.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
-        self.settings_table_10.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
-        self.settings_table_10.setTextElideMode(Qt.TextElideMode.ElideNone)
-        self.settings_table_10.horizontalHeader().setVisible(True)
-        self.settings_table_10.horizontalHeader().setMinimumSectionSize(60)
-        self.settings_table_10.horizontalHeader().setDefaultSectionSize(200)
-        self.settings_table_10.verticalHeader().setVisible(False)
-
-        self.table_settings_10.addWidget(self.settings_table_10)
-
-
-        self.horizontalLayout_16.addLayout(self.table_settings_10)
-
         self.stacked_Settings.addWidget(self.page_Personal)
         self.page_Type = QWidget()
         self.page_Type.setObjectName(u"page_Type")
@@ -612,125 +590,15 @@ class Ui_MainWindow(object):
         self.page_ClientData.setObjectName(u"page_ClientData")
         self.horizontalLayout_15 = QHBoxLayout(self.page_ClientData)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.table_settings_6 = QVBoxLayout()
-        self.table_settings_6.setObjectName(u"table_settings_6")
-        self.horizontalLayout_10 = QHBoxLayout()
-        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.horizontalSpacer_17 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_10.addItem(self.horizontalSpacer_17)
-
-        self.settings_add_6 = QPushButton(self.page_ClientData)
-        self.settings_add_6.setObjectName(u"settings_add_6")
-        self.settings_add_6.setMinimumSize(QSize(200, 0))
-        self.settings_add_6.setFont(font)
-
-        self.horizontalLayout_10.addWidget(self.settings_add_6)
-
-        self.settings_update_6 = QPushButton(self.page_ClientData)
-        self.settings_update_6.setObjectName(u"settings_update_6")
-        self.settings_update_6.setMinimumSize(QSize(200, 0))
-        self.settings_update_6.setFont(font)
-
-        self.horizontalLayout_10.addWidget(self.settings_update_6)
-
-        self.settings_delete_6 = QPushButton(self.page_ClientData)
-        self.settings_delete_6.setObjectName(u"settings_delete_6")
-        self.settings_delete_6.setMinimumSize(QSize(200, 0))
-        self.settings_delete_6.setFont(font)
-
-        self.horizontalLayout_10.addWidget(self.settings_delete_6)
-
-        self.horizontalSpacer_18 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_10.addItem(self.horizontalSpacer_18)
-
-
-        self.table_settings_6.addLayout(self.horizontalLayout_10)
-
-        self.settings_table_6 = QTableWidget(self.page_ClientData)
-        self.settings_table_6.setObjectName(u"settings_table_6")
-        self.settings_table_6.setFont(font)
-        self.settings_table_6.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.settings_table_6.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
-        self.settings_table_6.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
-        self.settings_table_6.setTextElideMode(Qt.TextElideMode.ElideNone)
-        self.settings_table_6.horizontalHeader().setVisible(True)
-        self.settings_table_6.horizontalHeader().setMinimumSectionSize(60)
-        self.settings_table_6.horizontalHeader().setDefaultSectionSize(200)
-        self.settings_table_6.verticalHeader().setVisible(False)
-
-        self.table_settings_6.addWidget(self.settings_table_6)
-
-
-        self.horizontalLayout_15.addLayout(self.table_settings_6)
-
         self.stacked_Settings.addWidget(self.page_ClientData)
         self.page_App = QWidget()
         self.page_App.setObjectName(u"page_App")
         self.Log_out = QPushButton(self.page_App)
         self.Log_out.setObjectName(u"Log_out")
         self.Log_out.setEnabled(True)
-        self.Log_out.setGeometry(QRect(40, 20, 250, 31))
+        self.Log_out.setGeometry(QRect(210, 40, 250, 31))
         self.Log_out.setMinimumSize(QSize(250, 0))
         self.Log_out.setFont(font)
-        self.widget_debug = QWidget(self.page_App)
-        self.widget_debug.setObjectName(u"widget_debug")
-        self.widget_debug.setGeometry(QRect(20, 60, 1051, 661))
-        self.layoutWidget_8 = QWidget(self.widget_debug)
-        self.layoutWidget_8.setObjectName(u"layoutWidget_8")
-        self.layoutWidget_8.setGeometry(QRect(0, 0, 776, 564))
-        self.table_settings_11 = QVBoxLayout(self.layoutWidget_8)
-        self.table_settings_11.setObjectName(u"table_settings_11")
-        self.table_settings_11.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_20 = QHBoxLayout()
-        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
-        self.horizontalSpacer_27 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_20.addItem(self.horizontalSpacer_27)
-
-        self.settings_add_11 = QPushButton(self.layoutWidget_8)
-        self.settings_add_11.setObjectName(u"settings_add_11")
-        self.settings_add_11.setMinimumSize(QSize(200, 0))
-        self.settings_add_11.setFont(font)
-
-        self.horizontalLayout_20.addWidget(self.settings_add_11)
-
-        self.settings_update_11 = QPushButton(self.layoutWidget_8)
-        self.settings_update_11.setObjectName(u"settings_update_11")
-        self.settings_update_11.setMinimumSize(QSize(200, 0))
-        self.settings_update_11.setFont(font)
-
-        self.horizontalLayout_20.addWidget(self.settings_update_11)
-
-        self.settings_delete_11 = QPushButton(self.layoutWidget_8)
-        self.settings_delete_11.setObjectName(u"settings_delete_11")
-        self.settings_delete_11.setMinimumSize(QSize(200, 0))
-        self.settings_delete_11.setFont(font)
-
-        self.horizontalLayout_20.addWidget(self.settings_delete_11)
-
-        self.horizontalSpacer_28 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_20.addItem(self.horizontalSpacer_28)
-
-
-        self.table_settings_11.addLayout(self.horizontalLayout_20)
-
-        self.settings_table_11 = QTableWidget(self.layoutWidget_8)
-        self.settings_table_11.setObjectName(u"settings_table_11")
-        self.settings_table_11.setFont(font)
-        self.settings_table_11.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.settings_table_11.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
-        self.settings_table_11.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
-        self.settings_table_11.setTextElideMode(Qt.TextElideMode.ElideNone)
-        self.settings_table_11.horizontalHeader().setVisible(True)
-        self.settings_table_11.horizontalHeader().setMinimumSectionSize(60)
-        self.settings_table_11.horizontalHeader().setDefaultSectionSize(200)
-        self.settings_table_11.verticalHeader().setVisible(False)
-
-        self.table_settings_11.addWidget(self.settings_table_11)
-
         self.stacked_Settings.addWidget(self.page_App)
 
         self.horizontalLayout_3.addWidget(self.stacked_Settings)
@@ -784,14 +652,145 @@ class Ui_MainWindow(object):
         self.gridLayout.addItem(self.verticalSpacer_5, 1, 1, 1, 1)
 
         self.stackedWidget.addWidget(self.Stats)
+        self.Clients = QWidget()
+        self.Clients.setObjectName(u"Clients")
+        self.verticalLayout_2 = QVBoxLayout(self.Clients)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.layout_clients = QVBoxLayout()
+        self.layout_clients.setObjectName(u"layout_clients")
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalSpacer_17 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_2.addWidget(self.stackedWidget)
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_17)
+
+        self.client_story = QPushButton(self.Clients)
+        self.client_story.setObjectName(u"client_story")
+        self.client_story.setMinimumSize(QSize(150, 0))
+        self.client_story.setFont(font)
+
+        self.horizontalLayout_10.addWidget(self.client_story)
+
+        self.client_add = QPushButton(self.Clients)
+        self.client_add.setObjectName(u"client_add")
+        self.client_add.setMinimumSize(QSize(150, 0))
+        self.client_add.setFont(font)
+
+        self.horizontalLayout_10.addWidget(self.client_add)
+
+        self.client_update = QPushButton(self.Clients)
+        self.client_update.setObjectName(u"client_update")
+        self.client_update.setMinimumSize(QSize(150, 0))
+        self.client_update.setFont(font)
+
+        self.horizontalLayout_10.addWidget(self.client_update)
+
+        self.client_delete = QPushButton(self.Clients)
+        self.client_delete.setObjectName(u"client_delete")
+        self.client_delete.setMinimumSize(QSize(150, 0))
+        self.client_delete.setFont(font)
+
+        self.horizontalLayout_10.addWidget(self.client_delete)
+
+        self.horizontalSpacer_18 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_18)
+
+
+        self.layout_clients.addLayout(self.horizontalLayout_10)
+
+        self.client_table = QTableWidget(self.Clients)
+        self.client_table.setObjectName(u"client_table")
+        self.client_table.setFont(font)
+        self.client_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.client_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.client_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.client_table.setTextElideMode(Qt.TextElideMode.ElideNone)
+        self.client_table.horizontalHeader().setVisible(True)
+        self.client_table.horizontalHeader().setMinimumSectionSize(60)
+        self.client_table.horizontalHeader().setDefaultSectionSize(200)
+        self.client_table.verticalHeader().setVisible(False)
+
+        self.layout_clients.addWidget(self.client_table)
+
+
+        self.verticalLayout_2.addLayout(self.layout_clients)
+
+        self.stackedWidget.addWidget(self.Clients)
+        self.Personal = QWidget()
+        self.Personal.setObjectName(u"Personal")
+        self.verticalLayout_4 = QVBoxLayout(self.Personal)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.pers_layout = QVBoxLayout()
+        self.pers_layout.setObjectName(u"pers_layout")
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalSpacer_25 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_25)
+
+        self.personal_rew = QPushButton(self.Personal)
+        self.personal_rew.setObjectName(u"personal_rew")
+        self.personal_rew.setMinimumSize(QSize(150, 0))
+        self.personal_rew.setFont(font)
+
+        self.horizontalLayout_14.addWidget(self.personal_rew)
+
+        self.personal_add = QPushButton(self.Personal)
+        self.personal_add.setObjectName(u"personal_add")
+        self.personal_add.setMinimumSize(QSize(150, 0))
+        self.personal_add.setFont(font)
+
+        self.horizontalLayout_14.addWidget(self.personal_add)
+
+        self.personal_update = QPushButton(self.Personal)
+        self.personal_update.setObjectName(u"personal_update")
+        self.personal_update.setMinimumSize(QSize(150, 0))
+        self.personal_update.setFont(font)
+
+        self.horizontalLayout_14.addWidget(self.personal_update)
+
+        self.personal_delete = QPushButton(self.Personal)
+        self.personal_delete.setObjectName(u"personal_delete")
+        self.personal_delete.setMinimumSize(QSize(150, 0))
+        self.personal_delete.setFont(font)
+
+        self.horizontalLayout_14.addWidget(self.personal_delete)
+
+        self.horizontalSpacer_26 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_26)
+
+
+        self.pers_layout.addLayout(self.horizontalLayout_14)
+
+        self.personal_table = QTableWidget(self.Personal)
+        self.personal_table.setObjectName(u"personal_table")
+        self.personal_table.setFont(font)
+        self.personal_table.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.personal_table.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.personal_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.personal_table.setTextElideMode(Qt.TextElideMode.ElideNone)
+        self.personal_table.horizontalHeader().setVisible(True)
+        self.personal_table.horizontalHeader().setMinimumSectionSize(60)
+        self.personal_table.horizontalHeader().setDefaultSectionSize(200)
+        self.personal_table.verticalHeader().setVisible(False)
+
+        self.pers_layout.addWidget(self.personal_table)
+
+
+        self.verticalLayout_4.addLayout(self.pers_layout)
+
+        self.stackedWidget.addWidget(self.Personal)
+
+        self.horizontalLayout_6.addWidget(self.stackedWidget)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.ShowTables.setDefault(False)
+        self.stackedWidget.setCurrentIndex(5)
         self.stacked_Settings.setCurrentIndex(6)
 
 
@@ -801,6 +800,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.ShowTables.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u044f\u0432\u043a\u0438", None))
+        self.ShowClietns.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043b\u0438\u0435\u043d\u0442\u044b", None))
+        self.ShowPersonal.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0441\u043e\u043d\u0430\u043b", None))
         self.ShowStats.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043a\u0430", None))
         self.ShowSettings.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044f", None))
@@ -821,9 +822,6 @@ class Ui_MainWindow(object):
         self.settings_add_5.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.settings_update_5.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.settings_delete_5.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
-        self.settings_add_10.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.settings_update_10.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
-        self.settings_delete_10.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
         self.settings_add_8.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.settings_update_8.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.settings_delete_8.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
@@ -833,14 +831,16 @@ class Ui_MainWindow(object):
         self.settings_add_7.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.settings_update_7.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.settings_delete_7.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
-        self.settings_add_6.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.settings_update_6.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
-        self.settings_delete_6.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
-        self.Log_out.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434", None))
-        self.settings_add_11.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
-        self.settings_update_11.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
-        self.settings_delete_11.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.Log_out.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0445\u043e\u0434 \u0438\u0437 \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430", None))
         self.SumText.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u043d\u044b\u0445 \u0437\u0430\u044f\u0432\u043e\u043a", None))
         self.TypeText.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0438\u043f\u044b \u0437\u0430\u044f\u0432\u043e\u043a", None))
+        self.client_story.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0441\u0442\u043e\u0440\u0438\u044f", None))
+        self.client_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.client_update.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.client_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.personal_rew.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0442\u0437\u044b\u0432\u044b", None))
+        self.personal_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
+        self.personal_update.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
+        self.personal_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
     # retranslateUi
 

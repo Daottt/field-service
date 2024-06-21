@@ -3,19 +3,23 @@ from src.client.DataWindow import DataWindow
 from src.client.resolver import *
 
 class TableManager:
-    def __init__(self, table_name: str, window,
-                 table: QTableWidget, add_b: QPushButton, update_b: QPushButton, delete_b: QPushButton):
+    def __init__(self, data_func: callable, table_name: str, window, table: QTableWidget,
+                 add_b: QPushButton, update_b: QPushButton, delete_b: QPushButton, headers: list = None):
 
         self.window = window
         self.table_name = table_name
+        self.get_data = data_func
         self.current_table_keys = get_fields(table_name)
         self.data_window = None
+        self.headers = headers
 
         self.Table: QTableWidget = table
         self.Add: QPushButton = add_b
         self.Update: QPushButton = update_b
         self.Delete: QPushButton = delete_b
 
+        self.row_selection(False)
+        self.Table.currentItemChanged.connect(lambda: self.row_selection(True))
         self.Add.clicked.connect(lambda: self.OpenNewWindow(True))
         self.Update.clicked.connect(lambda: self.OpenNewWindow(False))
         self.Delete.clicked.connect(self.delete_data)
@@ -26,8 +30,11 @@ class TableManager:
         table = self.Table
         table.clear()
         table.setColumnCount(len(self.current_table_keys))
-        table.setHorizontalHeaderLabels(self.current_table_keys)
-        data = getAll(self.table_name)
+        if not self.headers:
+            table.setHorizontalHeaderLabels(self.current_table_keys)
+        else:
+            table.setHorizontalHeaderLabels(self.headers)
+        data = self.get_data()
 
         table.setRowCount(len(data))
         table.setColumnWidth(0, 60)
@@ -37,6 +44,12 @@ class TableManager:
                 for i in range(len(data[0])):
                     table.setItem(i, row_index, QTableWidgetItem(str(item)))
                 row_index += 1
+        table.resizeColumnsToContents()
+        self.row_selection(False)
+
+    def row_selection(self, enabled):
+        self.Update.setEnabled(enabled)
+        self.Delete.setEnabled(enabled)
 
     def OpenNewWindow(self, add: bool):
         self.data_window = DataWindow(self.table_name)

@@ -9,8 +9,7 @@ class Post(BaseModelModify):
     power_level: int
 
 class Personal(BaseModelModify):
-    name: Optional[str] = None
-    surname: Optional[str] = None
+    fio: Optional[str] = None
     post_id: int
 
 class Users(BaseModelModify):
@@ -19,8 +18,7 @@ class Users(BaseModelModify):
     personal_id: Optional[int]
 
 class ClientData(BaseModelModify):
-    name: Optional[str] = None
-    surname: Optional[str] = None
+    fio: Optional[str] = None
     address: str
     phone_number: Optional[str] = None
 
