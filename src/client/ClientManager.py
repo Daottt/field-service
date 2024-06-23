@@ -43,11 +43,11 @@ class ClientManager:
 
         row_index = 0
         for values in data:
+            print(values["clientdata"])
             table.setItem(row_index, 0, QTableWidgetItem(str(values["id"])))
             table.setItem(row_index, 1, QTableWidgetItem(str(values["date_start"])))
-            table.setItem(row_index, 2, QTableWidgetItem(str(values["clientdata"][1])))
-            table.setItem(row_index, 3, QTableWidgetItem(str(values["clientdata"][3])))
-            table.setItem(row_index, 4, QTableWidgetItem(str(values["personal"][1])))
-            table.setItem(row_index, 5, QTableWidgetItem(str(values["tasktype"][1])))
+            table.setItem(row_index, 2, QTableWidgetItem(str(values["clientdata"][2])))
+            table.setItem(row_index, 3, QTableWidgetItem(str(values["personal"][1])))
+            table.setItem(row_index, 4, QTableWidgetItem(str(values["tasktype"][1])))
             row_index += 1
         table.resizeColumnsToContents()

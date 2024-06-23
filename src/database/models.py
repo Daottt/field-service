@@ -31,6 +31,16 @@ class TaskType(BaseModelModify):
 class Task(BaseModelModify):
     date_start: Optional[str] = None
     clientdata_id: int
-    personal_id: Optional[int]
+    personal_id: Optional[int] = None
     taskstatus_id: Optional[int] = None
     tasktype_id: Optional[int] = None
+
+class Reviews(BaseModelModify):
+    text: Optional[str] = None
+    client_id: Optional[int] = None
+    master_id: Optional[int] = None
+
+class Comments(BaseModelModify):
+    text: Optional[str] = None
+    master_id: Optional[int] = None
+    task_id: Optional[int] = None

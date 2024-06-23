@@ -10,7 +10,8 @@ TableFields = {"Users": [[QLineEdit, "Имя"], [QLineEdit, "Пароль"], [QL
                "Post": [[QLineEdit, "Название"], [QLineEdit, "Доступ"]],
                "Personal": [[QLineEdit, "ФИО"],  [QLineEdit, "post_id"]],
                "TaskStatus": [[QLineEdit, "Название"]],
-               "TaskType": [[QLineEdit, "Название"]]}
+               "TaskType": [[QLineEdit, "Название"]],
+               "Reviews": [[QLineEdit, "Текст"], [QLineEdit, "ID клиента"], [QLineEdit, "Id персонала"]]}
 
 class DataWindow(QDialog):
     def __init__(self, table):

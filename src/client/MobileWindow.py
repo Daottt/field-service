@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QWidget
 from src.client.ui.mobile import Ui_MainWindow
 from src.client.ui.mobile_task_data import Ui_Form
-from src.client.resolver import get_task_by_personal, get, update
+from src.client.resolver import get_task_by_personal, get, update, add_comment
 
 class MainWindow(QMainWindow):
     def __init__(self, user_data, parent=None):
@@ -12,11 +12,13 @@ class MainWindow(QMainWindow):
         self.user_data = user_data
         self.record = {}
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.CallClient.setEnabled(False)
 
         self.ui.pushButton.setVisible(False)
         self.ui.pushButton_2.setVisible(False)
-        #self.ui.pushButton.clicked.connect(self.clear_layout)
+        self.ui.add_comment.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(2))
+        self.ui.com_back.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
+        self.ui.com_send.clicked.connect(self.create_comment)
+                #self.ui.pushButton.clicked.connect(self.clear_layout)
 
         def back():
             self.show_tasks()
@@ -24,6 +26,10 @@ class MainWindow(QMainWindow):
         self.ui.Back.clicked.connect(back)
         self.show_tasks()
         #print(get("Personal", self.user_data["PersonalID"]))
+
+
+    def create_comment(self):
+        add_comment(self.ui.com_text.text(),self.user_data["PersonalID"], self.current_id)
 
     def show_tasks(self):
         self.clear_layout()
@@ -53,6 +59,7 @@ class MainWindow(QMainWindow):
         sender = self.sender()
         data = self.task_data[int(sender.objectName())]
         record = get("Task", data["id"])
+        self.current_id = record["id"]
         self.ui.Start_Complete.clicked.disconnect()
 
         def start():

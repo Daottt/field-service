@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         self.ui.ShowStats.clicked.connect(lambda: self.ChangeTab(3))
         self.ui.ShowClietns.clicked.connect(lambda: self.ChangeTab(4))
         self.ui.ShowPersonal.clicked.connect(lambda: self.ChangeTab(5))
-        self.settings_tab = None
+        self.settings_tab = SettingsManager(self.ui, self)
         self.task_manger = TaskManager(self.ui, self)
         self.client_manager = ClientManager(self.ui, self)
         self.personal_manager = PersonalManager(self.ui, self)
@@ -37,19 +37,24 @@ class MainWindow(QMainWindow):
             self.ui.loginInfo.setText("Неверный логин или пароль")
             return
 
-        if self.user_data["PowerLevel"] == 3:
+        if self.user_data["PowerLevel"] == 2:
             window = Mobile(self.user_data)
             window.show()
             self.close()
             app = QApplication(sys.argv)
             sys.exit(app.exec())
             return
-        if self.user_data["PowerLevel"] == 2:
-            print("MANAGER")
-            pass
+        if self.user_data["PowerLevel"] == 1:
+            self.settings_tab.add_keys(2)
+            self.ui.personal_add.setVisible(False)
+            self.ui.personal_update.setVisible(False)
+            self.ui.personal_delete.setVisible(False)
+        if self.user_data["PowerLevel"] == 0:
+            self.settings_tab.add_keys(0)
+            self.ui.personal_add.setVisible(True)
+            self.ui.personal_update.setVisible(True)
+            self.ui.personal_delete.setVisible(True)
 
-        if not self.settings_tab:
-            self.settings_tab = SettingsManager(self.ui, self)
         self.ui.navButtons.setVisible(True)
         self.ui.stackedWidget.setCurrentIndex(1)
         self.task_manger.UpdateTableData()

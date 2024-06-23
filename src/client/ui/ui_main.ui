@@ -220,7 +220,7 @@ font: 16pt &quot;Arial&quot;;</string>
        </font>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login">
        <property name="styleSheet">
@@ -518,7 +518,7 @@ font: 16pt &quot;Arial&quot;;</string>
              <widget class="QPushButton" name="Add_R">
               <property name="minimumSize">
                <size>
-                <width>200</width>
+                <width>150</width>
                 <height>0</height>
                </size>
               </property>
@@ -539,7 +539,7 @@ font: 16pt &quot;Arial&quot;;</string>
              <widget class="QPushButton" name="Update_R">
               <property name="minimumSize">
                <size>
-                <width>200</width>
+                <width>150</width>
                 <height>0</height>
                </size>
               </property>
@@ -560,7 +560,7 @@ font: 16pt &quot;Arial&quot;;</string>
              <widget class="QPushButton" name="Delete_R">
               <property name="minimumSize">
                <size>
-                <width>200</width>
+                <width>150</width>
                 <height>0</height>
                </size>
               </property>
@@ -574,6 +574,19 @@ font: 16pt &quot;Arial&quot;;</string>
               </property>
               <property name="text">
                <string>Удалить</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="com_R">
+              <property name="minimumSize">
+               <size>
+                <width>140</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Комментарии</string>
               </property>
              </widget>
             </item>

@@ -68,3 +68,23 @@ def get_task_by_client(client_id: int):
         params={"id": client_id},
     )
     return answer.json()
+
+def get_reviews(index):
+    answer = requests.get(
+        url=f'{server_url}/Reviews/get_by_personal/',
+        params={"id": index},
+    )
+    return answer.json()
+
+def add_comment(text,master,task):
+    requests.post(
+        url=f'{server_url}/Comments/create',
+        data=json.dumps({"text": text, "master_id":master, "task_id":task})
+    )
+
+def get_comment(index):
+    answer = requests.get(
+        url=f'{server_url}/Comments/get_by_task/',
+        params={"id": index},
+    )
+    return answer.json()

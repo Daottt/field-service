@@ -1,17 +1,21 @@
-from PySide6.QtWidgets import QPushButton, QTableWidget, QTableWidgetItem, QComboBox, QMessageBox
+from PySide6.QtWidgets import QPushButton, QTableWidget, QTableWidgetItem, QComboBox, QMessageBox, QWidget
 from src.client.ui.ui_main import Ui_MainWindow
 from src.client.ClientDataWindow import ClientDataWindow
+from src.client.ui.ui_table_window import Ui_Form
 from src.client.resolver import *
 from src.database.models import Task
 
 TableFields = ["ID", "Время начала работ", "ФИО клиента", "Адрес клиента",
                "ФИО работника", "Статус задачи", "Тип задачи"]
 
+comment_headers = ["ID", "Текст", "ФИО мастера"]
+
 class TaskManager:
     def __init__(self, ui, window):
         self.ui: Ui_MainWindow = ui
         self.window = window
         self.Table: QTableWidget = self.ui.RequestsTable
+        self.comments_widget = None
         self.Add: QPushButton = self.ui.Add_R
         self.Update: QPushButton = self.ui.Update_R
         self.Delete: QPushButton = self.ui.Delete_R
@@ -19,6 +23,7 @@ class TaskManager:
         self.Add.clicked.connect(self.add_task)
         self.Update.clicked.connect(self.change_task)
         self.Delete.clicked.connect(self.delete_task)
+        self.ui.com_R.clicked.connect(self.show_comments)
         self.ui.client_data.clicked.connect(self.open_client_data)
         self.row_selection(False)
         self.ui.RequestsTable.currentItemChanged.connect(lambda: self.row_selection(True))
@@ -127,6 +132,7 @@ class TaskManager:
     def row_selection(self, enabled):
         self.ui.Update_R.setEnabled(enabled)
         self.ui.Delete_R.setEnabled(enabled)
+        self.ui.com_R.setEnabled(enabled)
 
     def UpdateTableData(self):
         self.raw_data.clear()
@@ -144,7 +150,7 @@ class TaskManager:
             self.Table.setItem(row_index, 0, QTableWidgetItem(str(values["id"])))
             self.Table.setItem(row_index, 1, QTableWidgetItem(str(values["date_start"])))
             self.Table.setItem(row_index, 2, QTableWidgetItem(str(values["clientdata"][1])))
-            self.Table.setItem(row_index, 3, QTableWidgetItem(str(values["clientdata"][3])))
+            self.Table.setItem(row_index, 3, QTableWidgetItem(str(values["clientdata"][2])))
             self.Table.setItem(row_index, 4, QTableWidgetItem(str(values["personal"][1])))
             self.Table.setItem(row_index, 5, QTableWidgetItem(str(values["taskstatus"][1])))
             self.Table.setItem(row_index, 6, QTableWidgetItem(str(values["tasktype"][1])))
@@ -154,3 +160,29 @@ class TaskManager:
     def get_current_id(self) -> int:
         index = self.Table.selectedIndexes()[0]
         return self.Table.model().data(index)
+
+    def show_comments(self):
+        self.comments_widget = QWidget()
+        self.comments_widget.ui = Ui_Form()
+        self.comments_widget.ui.setupUi(self.comments_widget)
+        self.update_comment_data()
+        self.comments_widget.show()
+        self.comments_widget.ui.Add.setVisible(False)
+        self.comments_widget.ui.Update.setVisible(False)
+        self.comments_widget.ui.Delete.setVisible(False)
+
+    def update_comment_data(self):
+        table = self.comments_widget.ui.Table
+        table.clear()
+        table.setColumnCount(len(comment_headers))
+        table.setHorizontalHeaderLabels(comment_headers)
+        data = get_comment(self.get_current_id())
+        table.setRowCount(len(data))
+
+        row_index = 0
+        for values in data:
+            table.setItem(row_index, 0, QTableWidgetItem(str(values["id"])))
+            table.setItem(row_index, 1, QTableWidgetItem(str(values["text"])))
+            table.setItem(row_index, 2, QTableWidgetItem(str(values["personal"][1])))
+            row_index += 1
+        table.resizeColumnsToContents()

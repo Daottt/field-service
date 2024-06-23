@@ -291,24 +291,30 @@ class Ui_MainWindow(object):
 
         self.Add_R = QPushButton(self.Requests)
         self.Add_R.setObjectName(u"Add_R")
-        self.Add_R.setMinimumSize(QSize(200, 0))
+        self.Add_R.setMinimumSize(QSize(150, 0))
         self.Add_R.setFont(font)
 
         self.R_buttons.addWidget(self.Add_R)
 
         self.Update_R = QPushButton(self.Requests)
         self.Update_R.setObjectName(u"Update_R")
-        self.Update_R.setMinimumSize(QSize(200, 0))
+        self.Update_R.setMinimumSize(QSize(150, 0))
         self.Update_R.setFont(font)
 
         self.R_buttons.addWidget(self.Update_R)
 
         self.Delete_R = QPushButton(self.Requests)
         self.Delete_R.setObjectName(u"Delete_R")
-        self.Delete_R.setMinimumSize(QSize(200, 0))
+        self.Delete_R.setMinimumSize(QSize(150, 0))
         self.Delete_R.setFont(font)
 
         self.R_buttons.addWidget(self.Delete_R)
+
+        self.com_R = QPushButton(self.Requests)
+        self.com_R.setObjectName(u"com_R")
+        self.com_R.setMinimumSize(QSize(140, 0))
+
+        self.R_buttons.addWidget(self.com_R)
 
         self.horizontalSpacer_12 = QSpacerItem(25, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -790,7 +796,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.ShowTables.setDefault(False)
-        self.stackedWidget.setCurrentIndex(5)
+        self.stackedWidget.setCurrentIndex(1)
         self.stacked_Settings.setCurrentIndex(6)
 
 
@@ -819,6 +825,7 @@ class Ui_MainWindow(object):
         self.Add_R.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.Update_R.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.Delete_R.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))
+        self.com_R.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0438", None))
         self.settings_add_5.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.settings_update_5.setText(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c", None))
         self.settings_delete_5.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))

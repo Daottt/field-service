@@ -14,13 +14,7 @@ class SettingsManager:
         self.ui: Ui_MainWindow = ui
         self.window = window
 
-        settings_list = self.ui.SettingsList
-        settings_list.clear()
-        settings_list.currentRowChanged.connect(self.change_tab)
-        if window.user_data["PowerLevel"] == 0:
-            settings_list.addItems([item for item in Settings_Tabs.keys()])
-        else:
-            settings_list.addItems([item for item in Settings_TabsM.keys()])
+        self.ui.SettingsList.currentRowChanged.connect(self.change_tab)
 
         self.users = TableManager(lambda: (getAll("Users")), "Users", self.window,  self.ui.settings_table_5,
                                   self.ui.settings_add_5, self.ui.settings_update_5, self.ui.settings_delete_5)
@@ -34,7 +28,17 @@ class SettingsManager:
         self.ui.settings_add_9.setVisible(False)
         self.ui.settings_delete_9.setVisible(False)
 
+    def add_keys(self, access):
+        settings_list = self.ui.SettingsList
+        settings_list.clear()
+        if access == 0:
+            settings_list.addItems([item for item in Settings_Tabs.keys()])
+        else:
+            settings_list.addItems([item for item in Settings_TabsM.keys()])
+
     def change_tab(self, index):
+        if not self.ui.SettingsList.currentItem():
+            return
         tab = Settings_Tabs[self.ui.SettingsList.currentItem().text()]
         self.ui.stacked_Settings.setCurrentIndex(tab)
         match tab:

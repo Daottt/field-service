@@ -38,7 +38,7 @@ font: 16pt &quot;Arial&quot;;</string>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="main">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -301,7 +301,7 @@ font: 16pt &quot;Arial&quot;;</string>
          </spacer>
         </item>
         <item>
-         <widget class="QTextEdit" name="com_text">
+         <widget class="QLineEdit" name="com_text">
           <property name="placeholderText">
            <string>Введите комментарий</string>
           </property>
